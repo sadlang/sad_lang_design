@@ -12,15 +12,15 @@
 
 ```
 npm install       # مرّةً واحدة
-npm run dev       # خادمُ تطويرٍ على http://localhost:4321
+npm run dev       # خادمُ تطويرٍ على http://localhost:4321/sad_lang_design/
 npm run build     # يبني الموقع في dist/
 npm run preview   # يعرض المبنيّ
 npm run check     # فحصُ الأنواع (astro check)
 ```
 
 يحتاج Node 22.19 أو أحدث (`.nvmrc`).
-- **النشر تحت مسارٍ فرعيّ** (`base` في `astro.config.mjs`) مدعوم: الروابطُ والشارات تحسبه.
-- **ولخريطة الموقع (sitemap)** يلزم `site`: عنوانُ الموقع المنشور. ولم يُحدَّد بعد.
+- **الموقعُ منشورٌ على GitHub Pages:** https://sadlang.github.io/sad_lang_design/ ، يبنيه `.github/workflows/pages.yml` من `main` بعد كلّ دفعٍ يغيّر الموقع (قرارات الموقع، القرار ٢٤).
+- **والعنوانُ واسمُ المستودع** (`SITE` و`BASE`) في `src/lib/site.mjs` وحده. **فكلُّ رابطٍ داخليٍّ في المحتوى نسبيّ،** لا يبدأ بـ`/`، إلّا رابطَ صفحة ٤٠٤.
 
 ## الهيكل
 
@@ -50,6 +50,9 @@ src/lib/decisions.mjs           القراراتُ التي تملكها الص�
 scripts/check-owners.mjs        فحصُ الصفحات المالكة، قبل كلّ بناء
 scripts/check-search.mjs        فحصُ توحيد الهمزات والتشكيل في البحث، بعد كلّ بناء
 scripts/check-external.mjs      فحصُ أنّ الموقع لا يحمّل شيئًا من خادم آخر (قرارات الموقع، القرار ٢٠)، بعد كلّ بناء
+scripts/check-links.mjs         فحصُ أنّ كلَّ رابطٍ داخليٍّ تحت عنوان الموقع ويصل (قرارات الموقع، القرار ٢٤)، بعد كلّ بناء
+scripts/count.mjs               عددٌ ومعدودُه بالعربيّة، لرسائل الفحوص
+src/lib/site.mjs                عنوانُ الموقع المنشور واسمُ المستودع: المصدرُ الوحيد
 src/lib/status.ts               الحالاتُ وترتيبُها، واستخراجُها من الصفحات
 src/lib/ec-verdict.mjs          رأسُ كتلة شفرة ص وحكمُ المترجم
 ec.config.mjs                   إعدادُ كتل الشفرة: أرقامُ الأسطر، والحكم

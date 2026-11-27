@@ -5,10 +5,9 @@ Rules (the id in brackets is printed with each violation):
   [N2] no hamza on alef (أ إ آ) in Arabic names, as in K-1; except «خطأ» and the fixed name «اقرأني.md».
   [N3] digits in names are Western (0-9), and every number outside the date has two digits:
        01_ 02_ ... at the start or in the middle of a name.
-  [N4] a record (in a system's مراجعات/) is named <topic>_<author>_<YYYY-MM-DD>.md; a record of
+  [N4] a record (in a system's مراجعات/) is named <topic>_<YYYY-MM-DD>.md, without an author; a record of
        several files is a folder named <topic>_<YYYY-MM-DD>/, and the names inside it are free
        of this pattern (N1-N3 still apply to them).
-       (the author is omitted for a council).
   [N5] a dated record (a file, or a folder of several files) lives in a
        system's مراجعات/, nowhere else.
   [N6] names under data/ and tools/ are ASCII snake_case.
@@ -106,7 +105,7 @@ def check_name(relpath: str, name: str, is_dir: bool) -> list[str]:
         out.append(f"[N5] {relpath}: dated record folder outside مراجعات/")
     if not is_dir:
         if is_record(relpath) and name != INDEX and not in_record_folder(relpath) and not RECORD_NAME.match(name):
-            out.append(f"[N4] {relpath}: record not named <topic>_<author>_<YYYY-MM-DD>.md")
+            out.append(f"[N4] {relpath}: record not named <topic>_<YYYY-MM-DD>.md")
         if DATED.search(name) and name.endswith(".md") and not is_record(relpath):
             out.append(f"[N5] {relpath}: dated record outside مراجعات/")
     return out

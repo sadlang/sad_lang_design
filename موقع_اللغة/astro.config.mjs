@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import { SECTIONS } from './src/lib/systems.mjs';
+import { BASE, SITE } from './src/lib/site.mjs';
 
 // كلُّ قسمٍ مدخلٌ ثمّ مجموعاتُه، أو يُولَّد كلُّه من مجلّده. والأقسامُ في src/lib/systems.mjs.
 /** @typedef {{ label: string, dir: string, groups?: Group[] }} Group */
@@ -33,7 +34,10 @@ const FONTS = [
 	...font('ibm-plex-mono', [400, 500]),
 ];
 
+// يُنشر على GitHub Pages تحت اسم المستودع، فكلُّ رابطٍ داخليٍّ في المحتوى نسبيّ لا يبدأ بـ/ (قرارات الموقع، القرار ٢٤).
 export default defineConfig({
+	site: SITE,
+	base: BASE,
 	integrations: [
 		starlight({
 			title: 'لغة ص',

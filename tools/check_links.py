@@ -4,7 +4,8 @@ Repository files: the link is resolved against the linking file's directory
 (percent-encoding decoded, #anchor and ?query dropped).
 Site pages (under the site's src/content/docs): links are routes. A page a/b/c.mdx
 is served at /a/b/c/, so ../x/ from it means /a/b/x/; the route must map to
-x.md(x) or x/index.md(x). Anchors are not checked yet.
+x.md(x) or x/index.md(x). Anchors are not checked yet. A site link starting with / is
+broken: the site is served under the repository name (site decision 24), so it must be relative.
 Inline links, images and reference definitions are checked, outside code; names must
 match case exactly, as on the Linux CI. Not checked: HTML href/src and MDX imports.
 
@@ -91,9 +92,9 @@ def resolve(relpath: str, target: str) -> bool:
         return True
     if relpath.startswith(SITE_DOCS + "/"):
         if Path(path).suffix in ("", ".html") or path.endswith("/"):
-            base = page_route(relpath)
-            route = posixpath.normpath(posixpath.join(base, path)) if not path.startswith("/") else path
-            return site_route_exists(route)
+            if path.startswith("/"):
+                return False  # يخرج من عنوان الموقع على GitHub Pages (قرارات الموقع، القرار ٢٤)
+            return site_route_exists(posixpath.normpath(posixpath.join(page_route(relpath), path)))
     if path.startswith("/"):
         return exists(ROOT / path.lstrip("/"))
     return exists(ROOT / posixpath.dirname(relpath) / path)

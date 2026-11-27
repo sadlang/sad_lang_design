@@ -6,6 +6,7 @@
 // - src وsrcset وposter وbackground في أيّ وسم، وdata في <object>، وما في srcdoc من <iframe>.
 // - كتل <style>، وسمة style، وسمات SVG التي تأخذ url() (fill وstroke وfilter وmask وclip-path وmarker-* وcursor)،
 //   و@import وurl() وimage-set() في CSS. وتُهمَل @namespace لأنّ عنوانها اسم لا يُحمَّل.
+import { count } from './count.mjs';
 // والوسوم تُقرأ كما يقرؤها المتصفّح: القيمة بعلامتي تنصيص أو بلا علامة، وتُفكّ كياناتها (&#x2F; و&quot; وأمثالهما)
 // وتهريبات CSS (\2f)، وتُترك التعليقات ومتون <script>. والعنوان من خادم آخر إن بدأ بشرطتين (/ أو \)
 // أو بمخطّط غير data: وblob: وabout:، بعد حذف ما يحذفه المتصفّح من فراغ وتحكّم.
@@ -197,17 +198,6 @@ const walk = (dir) =>
 		return e.isDirectory() ? walk(p) : [p];
 	});
 
-/** عدد ومعدوده بالعربيّة. @param {number} n @param {readonly [string, string, string, string, string]} f
- *  الصيغ: المفرد، والمثنّى، والجمع (٣–١٠)، والمفرد المنصوب (١١–٩٩)، والمفرد المجرور (١٠٠ وما بعده).
- *  وما بعد المئات يحكمه آخرُه: ١٠٣ موارد، و١١١ موردًا، و١٠٠ مورد؛ و١٠١ و١٠٢ كالمئة على الشائع في الأرقام. */
-const count = (n, [one, two, plural, acc, gen]) => {
-	if (n === 1) return `${one} واحد`;
-	if (n === 2) return two;
-	const r = n % 100;
-	if (r >= 3 && r <= 10) return `${n} ${plural}`;
-	if (r >= 11) return `${n} ${acc}`;
-	return `${n} ${gen}`;
-};
 const RESOURCE = /** @type {const} */ (['موردٌ', 'موردان', 'موارد', 'موردًا', 'مورد']);
 const FILE = /** @type {const} */ (['ملفٌّ', 'ملفّان', 'ملفّات', 'ملفًّا', 'ملفّ']);
 

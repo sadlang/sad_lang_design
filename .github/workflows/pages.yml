@@ -1,0 +1,55 @@
+# نشرُ الموقع على GitHub Pages: https://sadlang.github.io/sad_lang_design/
+# يُبنى من main وحده، بعد كلّ دفعٍ يغيّر الموقع، ويُشغَّل باليد أيضًا. والتشغيلُ اليدويّ من فرعٍ آخر يُتخطّى،
+# وبيئةُ github-pages في إعدادات المستودع لا تقبل النشرَ إلّا من main.
+# والبناءُ نفسُه يفحص الملكيّةَ والبحثَ والمواردَ الخارجيّة (npm run build)، فلا يُنشر موقعٌ يخالفها.
+name: pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "موقع_اللغة/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# نشرٌ واحدٌ في كلّ وقت، ولا يُقطع نشرٌ بدأ.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: موقع_اللغة
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: موقع_اللغة/.nvmrc
+          cache: npm
+          cache-dependency-path: موقع_اللغة/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: موقع_اللغة/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    # صلاحيّةُ الكتابة لوظيفة النشر وحدها، لا للبناء.
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
