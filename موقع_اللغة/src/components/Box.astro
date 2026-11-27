@@ -1,0 +1,9 @@
+---
+// صندوقُ الدليل: ستتعلّم، وجرّب، وخلاصة.
+const { kind } = Astro.props;
+const titles = { learn: 'ستتعلّم في هذا الفصل', try: 'جرّب بنفسك', summary: 'خلاصةُ الفصل' } as const;
+---
+<aside class={`sad-box sad-box-${kind}`}>
+	<p class="sad-box-title">{titles[kind as keyof typeof titles]}</p>
+	<slot />
+</aside>

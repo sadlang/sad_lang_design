@@ -1,0 +1,14 @@
+{
+	"heading.anchorLabel": "رابطُ قسم «{{title}}»",
+	"tableOfContents.onThisPage": "في هذه الصفحة",
+	"pagefind.clear_search": "امسح",
+	"pagefind.load_more": "مزيدٌ من النتائج",
+	"pagefind.search_label": "ابحث في الموقع",
+	"pagefind.filters_label": "المرشِّحات",
+	"pagefind.zero_results": "لا نتائج عن «[SEARCH_TERM]»",
+	"pagefind.many_results": "[COUNT] نتيجة عن «[SEARCH_TERM]»",
+	"pagefind.one_result": "نتيجةٌ واحدة عن «[SEARCH_TERM]»",
+	"pagefind.alt_search": "لا نتائج عن «[SEARCH_TERM]». وهذه نتائجُ «[DIFFERENT_TERM]»",
+	"pagefind.search_suggestion": "لا نتائج عن «[SEARCH_TERM]». جرّب كلمةً أخرى.",
+	"pagefind.searching": "يبحث عن «[SEARCH_TERM]»…"
+}

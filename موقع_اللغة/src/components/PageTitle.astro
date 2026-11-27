@@ -1,0 +1,34 @@
+---
+// يضيف تحت عنوان الصفحات التي تملك قراراتٍ «حالةَ الصفحة» بعدد أقسام كلّ حالة، ومرشِّحًا يخفّتها.
+// (مفتاحُ «دليل · مرجع» أُزيل مع تقسيم الموقع بحسب القارئ، ٢٠٢٦-١١-١٩.)
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+import { STATUSES, isStatusful, sectionStatuses, type Status } from '../lib/status';
+
+const route = Astro.locals.starlightRoute;
+
+const counts = new Map<Status, number>();
+if (isStatusful(route.id)) for (const s of sectionStatuses(route.entry.body ?? '', route.entry.filePath)) counts.set(s, (counts.get(s) ?? 0) + 1);
+const num = new Intl.NumberFormat('ar-EG');
+const order = (Object.keys(STATUSES) as Status[]).sort((a, b) => STATUSES[b].rank - STATUSES[a].rank).filter((s) => counts.has(s));
+---
+<Default />
+{order.length > 0 && (
+	<div class="sad-pagestatus" data-pagefind-ignore>
+		<span>حالةُ الصفحة</span>
+		{order.map((s) => (
+			<button type="button" class={`sad-chip sad-${STATUSES[s].key}`} data-st={s} aria-pressed="true" title="اضغط لتخفيت أقسامها">
+				{STATUSES[s].sym} {STATUSES[s].label} <b class="sad-count">{num.format(counts.get(s) ?? 0)}</b>
+			</button>
+		))}
+	</div>
+)}
+
+<script>
+	document.querySelectorAll<HTMLButtonElement>('.sad-pagestatus button').forEach((b) => {
+		b.addEventListener('click', () => {
+			const on = b.getAttribute('aria-pressed') !== 'true';
+			b.setAttribute('aria-pressed', String(on));
+			document.querySelectorAll(`.sad-sec[data-st="${b.dataset.st}"]`).forEach((s) => s.classList.toggle('sad-dim', !on));
+		});
+	});
+</script>

@@ -1,0 +1,244 @@
+/* سمةُ موقع ص — تخطيطُ النموذج السابع «طبقتان»، بألوان الموقع الحاليّة (قرارُ المالك ٢٠٢٦-١٠-١١).
+   الألوانُ معدّلةٌ لتباينٍ ≥ ٤٫٥ (AA) بحسب مراجعة أميليا.
+   في Starlight يكون الليليّ على :root، والنهاريّ على :root[data-theme='light']. */
+
+:root {
+	--sl-font: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+	--sl-font-mono: 'IBM Plex Mono', 'IBM Plex Sans Arabic', monospace;
+	--sad-read: 'Noto Naskh Arabic', 'IBM Plex Sans Arabic', serif;
+	--sl-content-width: 46rem;
+
+	--sl-color-accent-low: #1c2440;
+	--sl-color-accent: #5b7cfa;
+	--sl-color-accent-high: #c9d5ff;
+	--sl-color-white: #eef0f5;
+	--sl-color-gray-1: #d6d9e2;
+	--sl-color-gray-2: #b0b5c2;
+	--sl-color-gray-3: #7e8494;
+	--sl-color-gray-4: #545a68;
+	--sl-color-gray-5: #353a46;
+	--sl-color-gray-6: #22252e;
+	--sl-color-black: #14161b;
+
+	--sad-ok: #3fb950;
+	--sad-prop: #58a6ff;
+	--sad-open: #d29922;
+	--sad-none: #9ea7b3;
+	--sad-hold: #bc8cff;
+	--sad-glow: rgba(124, 156, 255, 0.18);
+}
+
+:root[data-theme='light'] {
+	--sl-color-accent-low: #e3e9fe;
+	--sl-color-accent: #2f5bea;
+	--sl-color-accent-high: #1b3aa8;
+	--sl-color-white: #15171c;
+	--sl-color-gray-1: #22252e;
+	--sl-color-gray-2: #353a46;
+	--sl-color-gray-3: #545a68;
+	--sl-color-gray-4: #7e8494;
+	--sl-color-gray-5: #c4c8d2;
+	--sl-color-gray-6: #e7e9ef;
+	--sl-color-gray-7: #f4f5f8;
+	--sl-color-black: #ffffff;
+
+	--sad-ok: #116329;
+	--sad-prop: #0550ae;
+	--sad-open: #7d4e00;
+	--sad-none: #57606a;
+	--sad-hold: #6639ba;
+	--sad-glow: rgba(47, 91, 234, 0.12);
+}
+
+/* القراءةُ الطويلة بالنسخ، والواجهةُ والعناوينُ بـIBM Plex */
+.sl-markdown-content :is(p, li, blockquote, td) {
+	font-family: var(--sad-read);
+	font-size: 1.1rem;
+	line-height: 2;
+}
+.sl-markdown-content :is(h2, h3, h4) {
+	font-family: var(--sl-font);
+}
+
+/* ألوانُ الحالات */
+.sad-ok { --st: var(--sad-ok); }
+.sad-prop { --st: var(--sad-prop); }
+.sad-open { --st: var(--sad-open); }
+.sad-none { --st: var(--sad-none); }
+.sad-hold { --st: var(--sad-hold); }
+
+/* الشارة: رمزٌ وكلمة، لا لونٌ وحده */
+.sad-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3em;
+	font: 500 0.8rem/1.9 var(--sl-font);
+	padding: 0 0.7em;
+	border-radius: 999px;
+	border: 1px solid color-mix(in srgb, var(--st) 55%, transparent);
+	background: color-mix(in srgb, var(--st) 12%, transparent);
+	color: var(--st);
+	white-space: nowrap;
+}
+
+/* شارةُ الحالة في القائمة الجانبيّة */
+.sl-badge.sad-badge {
+	border-color: color-mix(in srgb, var(--st) 55%, transparent);
+	background: color-mix(in srgb, var(--st) 14%, transparent);
+	color: var(--st);
+	font-family: var(--sl-font);
+}
+
+/* قسمُ المرجع: خطٌّ جانبيّ بلون حالته، والشارةُ في طرفه */
+.sl-markdown-content .sad-sec {
+	position: relative;
+	border-inline-start: 3px solid var(--st);
+	padding-inline-start: 1.25rem;
+	margin-block: 2rem;
+	transition: opacity 0.15s;
+}
+.sl-markdown-content .sad-sec > .sad-chip {
+	position: absolute;
+	inset-inline-end: 0;
+	top: 0.35rem;
+}
+.sl-markdown-content .sad-sec > :is(h2, h3):first-of-type {
+	margin-top: 0;
+	padding-inline-end: 7rem;
+}
+.sad-sec.sad-dim { opacity: 0.28; }
+
+/* حالةُ الصفحة ومرشِّحُها */
+.sad-pagestatus {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 1rem;
+	padding: 0.6rem 0.9rem;
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 10px;
+	background: var(--sl-color-gray-6);
+	font-size: 0.85rem;
+	color: var(--sl-color-gray-2);
+}
+:root[data-theme='light'] .sad-pagestatus { background: var(--sl-color-gray-7); }
+.sad-pagestatus button { cursor: pointer; }
+.sad-pagestatus button[aria-pressed='false'] { opacity: 0.4; text-decoration: line-through; }
+
+/* مفتاحُ الطبقتين */
+.sad-lens {
+	display: inline-flex;
+	gap: 4px;
+	padding: 4px;
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 12px;
+	margin-top: 0.5rem;
+}
+.sad-lens a {
+	display: flex;
+	align-items: baseline;
+	gap: 0.4rem;
+	padding: 0.3rem 0.9rem;
+	border-radius: 9px;
+	text-decoration: none;
+	color: var(--sl-color-gray-3);
+	font-weight: 600;
+}
+.sad-lens a small { font-weight: 400; font-size: 0.75rem; }
+.sad-lens a[aria-current] {
+	background: var(--sl-color-accent-low);
+	color: var(--sl-color-text-accent);
+}
+@media (max-width: 50rem) {
+	.sad-lens { display: flex; }
+	.sad-lens a { flex: 1; justify-content: center; }
+}
+
+/* حكمُ المترجم في رأس كتلة الشفرة (src/lib/ec-verdict.mjs) */
+.expressive-code .frame .header .sad-verdict {
+	margin-inline-start: auto;
+	padding-inline: 0.75rem;
+	align-self: center;
+	font: 600 0.8rem/1 var(--sl-font);
+	color: var(--st);
+}
+.expressive-code .sad-verdict.sad-err { --st: var(--sad-open); }
+
+/* صناديقُ الدليل */
+.sad-box {
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 12px;
+	padding: 1rem 1.25rem;
+	margin-block: 1.5rem;
+}
+.sad-box-try { border: 2px dashed color-mix(in srgb, var(--sl-color-accent) 50%, transparent); }
+.sad-box-summary { background: var(--sl-color-accent-low); border-color: transparent; }
+.sl-markdown-content .sad-box-title {
+	font: 700 0.95rem/1.6 var(--sl-font);
+	color: var(--sl-color-text-accent);
+	margin: 0 0 0.4rem;
+}
+.sad-discuss {
+	border-inline-start: 4px solid var(--sad-open);
+	background: color-mix(in srgb, var(--sad-open) 10%, transparent);
+	border-start-end-radius: 10px;
+	border-end-end-radius: 10px;
+	padding: 0.75rem 1rem;
+	margin-block: 1.5rem;
+}
+.sad-discuss strong { color: var(--sad-open); }
+.sad-discuss a { margin-inline-start: 0.5rem; }
+
+/* الصفحةُ الرئيسيّة: توهّجُ «مدار» وبطاقاتُ الأنظمة */
+[data-has-hero] .main-frame {
+	background:
+		radial-gradient(60rem 30rem at 50% -8rem, var(--sad-glow), transparent 70%),
+		var(--sl-color-black);
+}
+[data-has-hero] .hero h1 {
+	font-size: clamp(2.5rem, 7vw, 4rem);
+}
+.sad-systems { margin-top: 2rem; }
+
+/* عددُ الأقسام في شارة حالة الصفحة */
+.sad-count {
+	color: var(--sl-color-white);
+	font-weight: 700;
+	min-width: 1.3em;
+	text-align: center;
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--st) 22%, transparent);
+	margin-inline-start: 0.15em;
+}
+
+/* شفرةُ ص وخرجُ المترجم يُكتبان من اليمين إلى اليسار؛ وغيرُهما من اللغات يبقى من اليسار */
+.expressive-code pre:is([data-language='ص'], [data-language='خرج']) {
+	direction: rtl;
+	text-align: right;
+}
+.expressive-code pre:is([data-language='ص'], [data-language='خرج']) .ec-line {
+	direction: rtl;
+}
+
+/* شارةُ الصفحة الحاليّة في القائمة على خلفيّة اللون */
+.sidebar-content [aria-current='page'] .sl-badge.sad-badge {
+	background: var(--sl-color-black);
+}
+
+/* الأنظمةُ الأربعة في صفّين على الشاشات الواسعة */
+@media (min-width: 50rem) {
+	.sad-systems .card-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+[data-has-hero] .hero img {
+	max-width: 12rem;
+	filter: drop-shadow(0 1.5rem 3rem var(--sad-glow));
+}
+
+/* زرّ النسخ في شفرة ص وخرج المترجم: في الطرف الأيسر (نهاية السطر)، لا فوق بدايته */
+.expressive-code pre:is([data-language='ص'], [data-language='خرج']) + .copy {
+	inset-inline-end: auto;
+	left: calc(var(--ec-brdWd) + var(--ec-uiPadInl) / 2);
+}

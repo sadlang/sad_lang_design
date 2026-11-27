@@ -1,0 +1,53 @@
+# Repository checks (حوكمة/اصطلاحات_المستودع.md §5). Strict since phase 2:
+# any violation not in a baseline under tools/baselines/ fails the run.
+name: docs-checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          # The oldest version README.md promises (tomllib), so the promise is tested.
+          python-version: "3.11"
+      - name: links
+        run: python tools/check_links.py --strict --baseline tools/baselines/broken_links.txt
+      - name: names
+        run: python tools/check_names.py --strict --baseline tools/baselines/names.txt
+      - name: glossary
+        run: python tools/check_glossary.py --strict
+      - name: sources
+        run: python tools/check_sources.py --strict
+      - name: style guide page is up to date with its source
+        run: python tools/gen_style_guide.py --check
+      - name: maps are up to date with their outlines
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          python tools/maps/ownership/gen.py
+          python tools/maps/types/gen.py
+          git diff --exit-code
+
+  site:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: موقع_اللغة
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: موقع_اللغة/.nvmrc
+          cache: npm
+          cache-dependency-path: موقع_اللغة/package-lock.json
+      - run: npm ci
+      - run: npm run build

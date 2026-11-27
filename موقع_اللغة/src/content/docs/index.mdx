@@ -1,0 +1,26 @@
+---
+title: لغة ص
+description: توثيق لغة ص
+template: splash
+hero:
+  tagline: شعارٌ قصير يُكتب لاحقًا.
+  image:
+    file: ../../assets/logo.svg
+  actions:
+    - text: ابدأ القراءة
+      link: learn/
+      icon: left-arrow
+    - text: المرجع
+      link: reference/
+      variant: minimal
+---
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { SECTIONS } from '~/lib/systems.mjs';
+
+export const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+<div class="sad-systems">
+<CardGrid>
+	{SECTIONS.map((s) => <LinkCard title={s.label} description={s.reader} href={`${base}/${s.dir}/`} />)}
+</CardGrid>
+</div>

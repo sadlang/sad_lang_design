@@ -1,0 +1,32 @@
+{
+  "name": "sad-docs",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/check-owners.mjs && astro build && node scripts/check-search.mjs && node scripts/check-external.mjs",
+    "check:owners": "node scripts/check-owners.mjs",
+    "check:search": "node scripts/check-search.mjs",
+    "check:external": "node scripts/check-external.mjs",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.42.6",
+    "@expressive-code/core": "^0.44.2",
+    "@expressive-code/plugin-line-numbers": "^0.44.2",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/ibm-plex-sans-arabic": "^5.3.0",
+    "@fontsource/noto-naskh-arabic": "^5.3.0",
+    "astro": "^7.3.8",
+    "sharp": "^0.35.5"
+  },
+  "engines": {
+    "node": ">=22.19"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,0 +1,10 @@
+---
+// <قيد_النقاش مرجع="/reference/…/" /> — في «تعلّم ص» ودليل المترجم: هذا الموضع لم يُعتمَد بعد.
+const { مرجع } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<aside class="sad-discuss">
+	<strong>قيدُ النقاش</strong> — قد يتغيّر.
+	<slot />
+	{مرجع && <a href={`${base}${مرجع}`}>انظر المرجع ←</a>}
+</aside>

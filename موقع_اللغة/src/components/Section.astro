@@ -1,0 +1,13 @@
+---
+// <قسم حالة="معتمد"> … </قسم> — قسمٌ بحالة قراره، في الصفحات التي تملك قرارات. وفي «تعلّم ص» لا تظهر الحالات (قرار الموقع ٥ في حوكمة/قرارات_الموقع.md).
+import { isStatusful, statusOf } from '../lib/status';
+const route = Astro.locals.starlightRoute;
+if (!isStatusful(route.id)) {
+	throw new Error(`${route.entry.filePath}: <قسم> للصفحات التي تملك قرارات. في «تعلّم ص» وفي دليل المترجم استعمل <قيد_النقاش مرجع="…" />`);
+}
+const s = statusOf(Astro.props.حالة, route.entry.filePath);
+---
+<section class={`sad-sec sad-${s.key}`} data-st={Astro.props.حالة}>
+	<span class={`sad-chip sad-${s.key}`} data-pagefind-ignore>{s.sym} {s.label}</span>
+	<slot />
+</section>

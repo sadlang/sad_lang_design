@@ -1,0 +1,6 @@
+---
+// <شارة حالة="مقترح" /> — شارةُ حالةٍ داخل السطر.
+import { statusOf } from '../lib/status';
+const s = statusOf(Astro.props.حالة, Astro.locals.starlightRoute.entry.filePath);
+---
+<span class={`sad-chip sad-${s.key}`} data-pagefind-ignore>{s.sym} {s.label}</span>

@@ -1,0 +1,920 @@
+# معجم مصطلحات مشروع ص — مصدر الحقيقة (دليل الأسلوب، القاعدتان ١٢ و٢٧)
+#
+# يُلزم كل نص عربي في المشروع: تعليقات الشفرة، ورسائل المستخدم، والتوثيق.
+# والمصطلح الجديد يضاف هنا قبل استعماله.
+#
+# صيغة كل مدخل:
+#   [term.<id>]      المعرّف الإنجليزي ثابت لا يتغير ولا يعاد استعماله (القاعدة ٤٧)
+#   ar      = المصطلح العربي الوحيد المعتمد
+#   en      = مقابله الإنجليزي
+#   banned  = مرادفات عربية يرفضها السكربت
+#   note    = (اختياري) حدّ المعنى أو ما يفرّقه عن مصطلح قريب
+#   status  = "approved" أو "proposed" (المقترح لا يُفرض حتى يعتمده المالك)
+#
+# المطابقة: المحظور يُطابَق كلمةً كاملة (أو عبارةً كاملة)، ولو سبقته «ال» أو حروف العطف والجر (و ف ب ك ل)،
+# وتتجاهل التشكيل، وتوحّد الهمزة كما في ك‑١. فالمصطلح يُكتب هنا بلا تشكيل.
+# ويُستثنى من المطابقة: ما بين «» من كلام المالك المنقول، والسجلّات (مراجعات/).
+# ولا يُحظر إلا ما لا يحمل في المشروع معنى آخر؛ فالكلمات العامة لا تُحظر مفردةً.
+# والنص NFC، بلا محارف تحكم بالاتجاه ولا محارف خفية (القاعدة ٤٨).
+# والمصطلح الإنجليزي بين قوسين بعد العربي مسموح في أول ذكر، ولا يغني عنه.
+
+# ─────────────────────────────── المترجم ومراحله
+
+[term.compiler]
+ar = "مترجم"
+en = "compiler"
+banned = ["مصرف", "كومبايلر"]
+status = "approved"
+
+[term.aot_compiler]
+ar = "مترجم مسبق"
+en = "ahead-of-time (AOT) compiler"
+banned = ["مترجم سابق"]
+status = "approved"
+
+[term.dev_mode]
+ar = "وضع التطوير"
+en = "development mode"
+banned = ["نمط التطوير"]
+status = "approved"
+
+[term.frontend]
+ar = "الواجهة الأمامية"
+en = "frontend"
+banned = ["الطرف الأمامي", "الواجهة الأولى"]
+status = "approved"
+
+[term.backend]
+ar = "الخلفية"
+en = "backend"
+banned = ["الطرف الخلفي", "المؤخرة"]
+status = "approved"
+
+[term.lexer]
+ar = "المحلل المعجمي"
+en = "lexer"
+banned = ["الماسح الضوئي"]
+status = "approved"
+
+[term.token]
+ar = "مفردة"
+en = "token"
+banned = ["رمز مميز", "توكن", "وحدة معجمية"]
+note = "لا «رمز»، فالرمز في المعجم هو symbol"
+status = "approved"
+
+[term.parser]
+ar = "المحلل النحوي"
+en = "parser"
+banned = ["المعرب", "المحلل اللغوي"]
+status = "approved"
+
+[term.ast]
+ar = "شجرة النحو"
+en = "abstract syntax tree (AST)"
+banned = ["الشجرة التركيبية", "شجرة التركيب", "شجرة الإعراب"]
+status = "approved"
+
+[term.ir]
+ar = "التمثيل الوسيط"
+en = "intermediate representation (IR)"
+banned = ["التمثيل المتوسط", "اللغة الوسيطة"]
+note = "التمثيل الخاص بص بين الواجهة الأمامية وLLVM (ق‑٥)"
+status = "approved"
+
+[term.lowering]
+ar = "الخفض"
+en = "lowering"
+banned = ["التخفيض", "الإنزال"]
+status = "approved"
+
+[term.codegen]
+ar = "توليد الشفرة"
+en = "code generation"
+banned = ["توليد الكود", "إنتاج الشفرة"]
+status = "approved"
+
+[term.name_resolution]
+ar = "حل الأسماء"
+en = "name resolution"
+banned = ["تحليل الأسماء"]
+status = "approved"
+
+[term.type_checking]
+ar = "فحص الأنواع"
+en = "type checking"
+banned = ["التحقق من الأنواع", "تدقيق الأنواع"]
+status = "approved"
+
+[term.type_inference]
+ar = "استنباط النوع"
+en = "type inference"
+banned = ["استنتاج النوع", "تخمين النوع"]
+status = "approved"
+
+[term.monomorphization]
+ar = "التخصيص"
+en = "monomorphization"
+banned = ["أحادية الشكل"]
+note = "غير «المخصص» (allocator)"
+status = "approved"
+
+[term.optimization]
+ar = "التحسين"
+en = "optimization"
+banned = []
+status = "approved"
+
+[term.optimizer]
+ar = "المحسن"
+en = "optimizer"
+banned = ["المؤمثل"]
+status = "approved"
+
+[term.constant_folding]
+ar = "الطي"
+en = "constant folding"
+banned = ["طي الثوابت", "تقليص الثوابت"]
+status = "approved"
+
+[term.self_hosting]
+ar = "الكتابة الذاتية"
+en = "self-hosting"
+banned = ["الاستضافة الذاتية"]
+status = "approved"
+
+[term.bootstrap]
+ar = "الإقلاع"
+en = "bootstrap"
+banned = ["الإقلاع الذاتي"]
+status = "approved"
+
+# ─────────────────────────────── التشخيص والأخطاء
+
+[term.diagnostic]
+ar = "تشخيص"
+en = "diagnostic"
+banned = ["رسالة تشخيصية"]
+status = "approved"
+
+[term.error]
+ar = "خطأ"
+en = "error"
+banned = ["غلطة"]
+status = "approved"
+
+[term.warning]
+ar = "تحذير"
+en = "warning"
+banned = []
+note = "«التنبيه» صنف لم يُقرَّر بعد في ف‑١، فلا يُستعمل مرادفًا للتحذير"
+status = "approved"
+
+[term.error_code]
+ar = "رمز الخطأ"
+en = "error code"
+banned = ["كود الخطأ"]
+status = "approved"
+
+[term.panic]
+ar = "ذعر"
+en = "panic"
+banned = ["هلع"]
+note = "في شفرة المترجم بـRust وحدها"
+status = "approved"
+
+[term.crash]
+ar = "انهيار"
+en = "crash"
+banned = ["تعطل مفاجئ"]
+status = "approved"
+
+[term.crash_handler]
+ar = "معالج الانهيار"
+en = "crash handler"
+banned = ["مدير الانهيار"]
+status = "approved"
+
+[term.assertion]
+ar = "توكيد"
+en = "assertion"
+banned = []
+status = "approved"
+
+[term.failure]
+ar = "فشل"
+en = "failure"
+banned = ["إخفاق"]
+note = "مفهوم لغة ص: «نتيجة» بسكّر «يفشل» (ف‑١)"
+status = "approved"
+
+[term.fault]
+ar = "خلل"
+en = "fault"
+banned = []
+note = "صنف مستقل عن الفشل لا يعالج بـ«والا» (ف‑١)"
+status = "approved"
+
+# ─────────────────────────────── الذاكرة والملكية
+
+[term.ownership]
+ar = "الملكية"
+en = "ownership"
+banned = []
+status = "approved"
+
+[term.owner_value]
+ar = "المالك"
+en = "owner (of a value)"
+banned = []
+note = "مالك القيمة في نظام الملكية. ومالك المشروع يُكتب «مالك المشروع» في نصوص المساهمين"
+status = "approved"
+
+[term.borrow]
+ar = "استعارة"
+en = "borrow"
+banned = ["إعارة", "اقتراض"]
+note = "والكلمة المفتاحية «اعر» من كلمات اللغة لا من المعجم"
+status = "approved"
+
+[term.move]
+ar = "نقل"
+en = "move"
+banned = []
+status = "approved"
+
+[term.copy]
+ar = "نسخ"
+en = "copy"
+banned = ["استنساخ"]
+status = "approved"
+
+[term.drop]
+ar = "تحرير"
+en = "drop / free"
+banned = ["إتلاف", "هدم الكائن"]
+status = "approved"
+
+[term.drop_flag]
+ar = "علم التحرير"
+en = "drop flag"
+banned = ["راية التحرير"]
+status = "approved"
+
+[term.lifetime]
+ar = "عمر"
+en = "lifetime"
+banned = ["مدة الحياة"]
+note = "عمر المرجع، وفي سطح ص «العمر المسمى» (ق‑٣). و«مدة الوصول» مفهوم آخر في تدفق القيم"
+status = "approved"
+
+[term.access_duration]
+ar = "مدة الوصول"
+en = "access duration"
+banned = []
+note = "مفهوم ص في تدفق القيم"
+status = "approved"
+
+[term.reference]
+ar = "مرجع"
+en = "reference"
+banned = []
+status = "approved"
+
+[term.pointer]
+ar = "مؤشر"
+en = "pointer"
+banned = ["مشير"]
+status = "approved"
+
+[term.garbage_collector]
+ar = "جامع القمامة"
+en = "garbage collector"
+banned = ["جامع النفايات", "كانس الذاكرة"]
+status = "approved"
+
+[term.allocator]
+ar = "مخصص"
+en = "allocator"
+banned = ["محجز الذاكرة"]
+status = "approved"
+
+[term.arena]
+ar = "مخصص مجمع"
+en = "arena allocator"
+banned = ["الحلبة", "الساحة"]
+status = "approved"
+
+[term.index]
+ar = "فهرس"
+en = "index"
+banned = ["مؤشر رقمي"]
+status = "approved"
+
+[term.stack]
+ar = "المكدس"
+en = "stack"
+banned = ["الرصة"]
+status = "approved"
+
+[term.heap]
+ar = "الكومة"
+en = "heap"
+banned = ["الركام"]
+status = "approved"
+
+[term.copy_on_write]
+ar = "النسخ عند الكتابة"
+en = "copy-on-write (COW)"
+banned = []
+status = "approved"
+
+# ─────────────────────────────── مفاهيم اللغة في النثر
+
+[term.type]
+ar = "نوع"
+en = "type"
+banned = ["صنف بيانات"]
+status = "approved"
+
+[term.primitive_type]
+ar = "نوع أولي"
+en = "primitive type"
+banned = ["نوع بدائي"]
+status = "approved"
+
+[term.generics]
+ar = "المعممات"
+en = "generics"
+banned = ["الأنواع العامة"]
+status = "approved"
+
+[term.trait]
+ar = "سمة"
+en = "trait"
+banned = []
+note = "«واجهة» محجوزة لواجهة البرمجة (API)"
+status = "approved"
+
+[term.struct]
+ar = "بنية"
+en = "struct"
+banned = []
+note = "اعتُمدت «بنية» وتُرك «صنف» كلمةً للغة؛ ويبقى «صنف» في النثر بمعنى الفئة، و«السجل» بمعنى سجل القرارات"
+status = "approved"
+
+[term.enum]
+ar = "تعداد"
+en = "enum"
+banned = ["قائمة تعدادية"]
+status = "approved"
+
+[term.payload]
+ar = "حمولة"
+en = "payload"
+banned = []
+status = "approved"
+
+[term.tuple]
+ar = "صف"
+en = "tuple"
+banned = ["مجموعة مرتبة"]
+status = "approved"
+
+[term.field]
+ar = "حقل"
+en = "field"
+banned = []
+status = "approved"
+
+[term.method]
+ar = "طريقة"
+en = "method"
+banned = []
+status = "approved"
+
+[term.function]
+ar = "دالة"
+en = "function"
+banned = []
+status = "approved"
+
+[term.closure]
+ar = "مغلق"
+en = "closure"
+banned = ["دالة مجهولة"]
+note = "و«الإغلاق» بمعنى إغلاق المورد كلمة عادية"
+status = "approved"
+
+[term.parameter]
+ar = "معامل"
+en = "parameter"
+banned = ["بارامتر"]
+status = "approved"
+
+[term.argument]
+ar = "وسيط"
+en = "argument"
+banned = ["معطى"]
+status = "approved"
+
+[term.variable]
+ar = "متغير"
+en = "variable"
+banned = []
+status = "approved"
+
+[term.constant]
+ar = "ثابت"
+en = "constant"
+banned = []
+status = "approved"
+
+[term.expression]
+ar = "تعبير"
+en = "expression"
+banned = []
+status = "approved"
+
+[term.statement]
+ar = "تعليمة"
+en = "statement"
+banned = []
+status = "approved"
+
+[term.module]
+ar = "وحدة"
+en = "module"
+banned = ["موديول"]
+status = "approved"
+
+[term.api]
+ar = "واجهة"
+en = "interface / API"
+banned = []
+note = "واجهة البرمجة. و«واجهة المستخدم» و«الواجهة الأمامية» مصطلحان مركبان مستقلان"
+status = "approved"
+
+# ─────────────────────────────── البناء والربط والتنقيح
+
+[term.toolchain]
+ar = "سلسلة الأدوات"
+en = "toolchain"
+banned = ["حزمة الأدوات", "طقم الأدوات"]
+status = "approved"
+
+[term.build]
+ar = "بناء"
+en = "build"
+banned = []
+status = "approved"
+
+[term.linking]
+ar = "ربط"
+en = "linking"
+banned = ["وصل الملفات"]
+note = "ربط الوحدات في ملف تنفيذي (ق‑٩). وربط Rust بـLLVM «وصل»"
+status = "approved"
+
+[term.linker]
+ar = "الرابط"
+en = "linker"
+banned = ["المربط", "الموصل"]
+status = "approved"
+
+[term.object_file]
+ar = "ملف الكائن"
+en = "object file"
+banned = ["ملف الهدف"]
+status = "approved"
+
+[term.symbol]
+ar = "رمز"
+en = "symbol"
+banned = []
+note = "رمز في الملف الثنائي. و«رمز الخطأ» مصطلح مركب مستقل"
+status = "approved"
+
+[term.target]
+ar = "هدف"
+en = "target"
+banned = ["منصة الهدف"]
+status = "approved"
+
+[term.host]
+ar = "مضيف"
+en = "host"
+banned = []
+status = "approved"
+
+[term.cross_compilation]
+ar = "الترجمة المتقاطعة"
+en = "cross-compilation"
+banned = ["الترجمة العابرة"]
+status = "approved"
+
+[term.runtime_library]
+ar = "مكتبة التشغيل"
+en = "runtime library"
+banned = ["مكتبة وقت التشغيل"]
+status = "approved"
+
+[term.standard_library]
+ar = "المكتبة القياسية"
+en = "standard library"
+banned = ["المكتبة المعيارية"]
+status = "approved"
+
+[term.shim]
+ar = "حشوة"
+en = "shim"
+banned = []
+status = "approved"
+
+[term.debugger]
+ar = "منقح"
+en = "debugger"
+banned = ["مصحح"]
+note = "غير «مدقق الاستعارة» (borrow checker)"
+status = "approved"
+
+[term.debug_info]
+ar = "معلومات التنقيح"
+en = "debug info"
+banned = ["معلومات التصحيح"]
+status = "approved"
+
+[term.distribution_package]
+ar = "حزمة"
+en = "distribution package"
+banned = []
+note = "ما يُوزَّع لنظام ومعمارية. و«المنصات الست» للأنظمة والمعماريات نفسها"
+status = "approved"
+
+[term.crate]
+ar = "صندوق"
+en = "crate"
+banned = []
+note = "يقابل crate في cargo، مثل sad_llvm. و«حزمة» للحزم التي تُوزَّع"
+status = "approved"
+
+[term.workspace]
+ar = "مساحة العمل"
+en = "workspace"
+banned = ["مساحة الشغل"]
+status = "approved"
+
+[term.llvm_bindings]
+ar = "طبقة الوصل"
+en = "bindings (to LLVM)"
+banned = ["طبقة الربط"]
+note = "و«الربط» لـlinking وحده"
+status = "approved"
+
+[term.name_mangling]
+ar = "ترميز الأسماء"
+en = "name mangling"
+banned = ["تشويه الأسماء", "تشفير الأسماء"]
+note = "مصطلح مركب؛ و«الترميز» وحده encoding"
+status = "approved"
+
+# ─────────────────────────────── الجودة والفحص
+
+[term.ci]
+ar = "التكامل المستمر"
+en = "continuous integration (CI)"
+banned = ["الدمج المستمر"]
+status = "approved"
+
+[term.merge_gate]
+ar = "بوابة الدمج"
+en = "merge gate"
+banned = []
+status = "approved"
+
+[term.sanitizer]
+ar = "كاشف"
+en = "sanitizer"
+banned = ["معقم", "منظف"]
+status = "approved"
+
+[term.fuzzing]
+ar = "التشويش"
+en = "fuzzing"
+banned = ["الاختبار العشوائي", "الزغللة"]
+status = "approved"
+
+[term.mutation_testing]
+ar = "اختبار الطفرات"
+en = "mutation testing"
+banned = ["اختبار التحوير"]
+status = "approved"
+
+[term.lint]
+ar = "فحص"
+en = "lint"
+banned = ["تدقيق أسلوبي"]
+note = "«فحص الأنواع» مصطلح مركب مستقل"
+status = "approved"
+
+[term.formatter]
+ar = "المنسق"
+en = "formatter"
+banned = ["المهيئ"]
+status = "approved"
+
+[term.test_runner]
+ar = "مشغل الاختبارات"
+en = "test runner"
+banned = []
+status = "approved"
+
+[term.exemption]
+ar = "إعفاء"
+en = "lint exemption (expect / allow)"
+banned = []
+note = "«الاستثناء» محجوز لاستثناءات C++"
+status = "approved"
+
+[term.exception]
+ar = "استثناء"
+en = "exception (C++)"
+banned = []
+status = "approved"
+
+[term.source_of_truth]
+ar = "مصدر الحقيقة"
+en = "source of truth"
+banned = []
+status = "approved"
+
+[term.generator]
+ar = "المولد"
+en = "code generator script"
+banned = []
+note = "مولد الشفرة من ملفات data/، غير «توليد الشفرة» في الخلفية"
+status = "approved"
+
+# ─────────────────────────────── المستودع والمساهمة
+
+[term.code]
+ar = "شفرة"
+en = "code"
+banned = ["كود", "رماز"]
+status = "approved"
+
+[term.repository]
+ar = "مستودع"
+en = "repository"
+banned = ["ريبو"]
+status = "approved"
+
+[term.commit]
+ar = "إيداع"
+en = "commit"
+banned = ["كوميت"]
+status = "approved"
+
+[term.pull_request]
+ar = "طلب دمج"
+en = "pull request"
+banned = ["طلب سحب"]
+status = "approved"
+
+[term.branch]
+ar = "فرع"
+en = "branch"
+banned = []
+status = "approved"
+
+[term.contributor]
+ar = "مساهم"
+en = "contributor"
+banned = []
+note = "و«متطوع» لمن يساهم بلا أجر؛ لا يُبدَّل أحدهما بالآخر"
+status = "approved"
+
+[term.agent]
+ar = "الوكيل"
+en = "AI agent"
+banned = ["البوت"]
+status = "approved"
+
+[term.project_owner]
+ar = "مالك المشروع"
+en = "project owner"
+banned = []
+note = "يكفي «المالك» في DECISIONS.md حيث لا لبس"
+status = "approved"
+
+# ─────────────────────────────── النص والترميز
+
+[term.code_point]
+ar = "نقطة الترميز"
+en = "code point"
+banned = ["نقطة الشفرة"]
+status = "approved"
+
+[term.normalization]
+ar = "التطبيع"
+en = "normalization (NFC)"
+banned = []
+note = "«توحيد» المعرّفات عند المقارنة (ك‑١) يتم بالتطبيع"
+status = "approved"
+
+[term.bidi_control]
+ar = "محارف التحكم بالاتجاه"
+en = "bidirectional control characters"
+banned = ["رموز الاتجاه"]
+status = "approved"
+
+[term.source_file]
+ar = "ملف المصدر"
+en = "source file"
+banned = []
+note = "ملف بشفرة ص، امتداده .ص (ق‑١٠)"
+status = "proposed"
+
+[term.file_extension]
+ar = "امتداد الملف"
+en = "file extension"
+banned = []
+note = "غير «امتداد المحرر» (term.editor_extension)"
+status = "proposed"
+
+[term.bom]
+ar = "علامة ترتيب البايتات"
+en = "byte order mark (BOM)"
+banned = []
+status = "proposed"
+
+[term.byte_offset]
+ar = "إزاحة البايت"
+en = "byte offset"
+banned = []
+status = "proposed"
+
+[term.error_catalog]
+ar = "فهرس الأخطاء"
+en = "error catalog"
+banned = []
+status = "proposed"
+
+[term.error_family]
+ar = "عائلة الأخطاء"
+en = "error family"
+banned = []
+note = "الخانات الثلاث الأولى من رمز الخطأ (ق‑٦)"
+status = "proposed"
+
+[term.span]
+ar = "الموضع"
+en = "span"
+banned = []
+note = "موضع في ملف المصدر: معرف الملف وإزاحة البايت (ق‑٦ و)"
+status = "proposed"
+
+[term.source_map]
+ar = "خريطة المصادر"
+en = "source map"
+banned = []
+note = "ملفات المصدر المقروءة في الترجمة بمعرفاتها"
+status = "proposed"
+
+[term.diagnostics_engine]
+ar = "محرك التشخيص"
+en = "diagnostics engine"
+banned = []
+note = "يجمع تشخيص المراحل كلها (ق‑٦ و)"
+status = "proposed"
+
+[term.severity]
+ar = "درجة التشخيص"
+en = "severity"
+banned = []
+note = "خطأ أو تحذير أو ملاحظة (ق‑٦ ب)"
+status = "proposed"
+
+[term.note]
+ar = "ملاحظة"
+en = "note"
+banned = []
+note = "تشخيص يتبع غيره، وله رمز في الفهرس"
+status = "proposed"
+
+[term.message_template]
+ar = "قالب الرسالة"
+en = "message template"
+banned = []
+note = "نص الرسالة في فهرس الأخطاء بمعاملاته"
+status = "proposed"
+
+[term.session]
+ar = "جلسة الترجمة"
+en = "compilation session"
+banned = []
+note = "ما قرئ من ملفات وما جمع من تشخيص في ترجمة واحدة"
+status = "proposed"
+
+[term.driver]
+ar = "البرنامج الغلاف"
+en = "driver"
+banned = []
+note = "برنامج المترجم الرقيق فوق مكتبته (القاعدة ١٥)"
+status = "proposed"
+
+[term.escaping]
+ar = "تهريب"
+en = "escaping"
+banned = []
+note = "كتابة المحرف الخفي أو محرف التحكم بصيغة مرئية مثل U+202E مكتوبا بالشفرة"
+status = "proposed"
+
+[term.editor_extension]
+ar = "امتداد المحرر"
+en = "editor extension"
+banned = []
+note = "غير «امتداد الملف»"
+status = "proposed"
+
+# ─────────────────────────────── إضافات بعد مراجعة أميليا (٢٠٢٦-١١-٢١)
+
+[term.keyword]
+ar = "كلمة اللغة"
+en = "keyword"
+banned = ["كلمة مفتاحية", "كلمة محجوزة"]
+note = "كما في ك‑١: «كلمات اللغة». وهي في ملف الكلمات لا في المعجم"
+status = "approved"
+
+[term.identifier]
+ar = "معرف"
+en = "identifier"
+banned = []
+status = "approved"
+
+[term.scope]
+ar = "نطاق"
+en = "scope"
+banned = []
+status = "approved"
+
+[term.pattern_matching]
+ar = "مطابقة"
+en = "pattern matching"
+banned = []
+status = "approved"
+
+[term.thread]
+ar = "خيط"
+en = "thread"
+banned = ["مسلك"]
+status = "approved"
+
+[term.shared_library]
+ar = "مكتبة مشتركة"
+en = "shared / dynamic library"
+banned = ["مكتبة ديناميكية"]
+status = "approved"
+
+[term.hot_reload]
+ar = "إعادة التحميل"
+en = "hot reload"
+banned = ["التحميل الساخن"]
+status = "approved"
+
+[term.vtable]
+ar = "جدول النداء"
+en = "dispatch table (vtable)"
+banned = ["الجدول الافتراضي"]
+status = "approved"
+
+[term.assembly]
+ar = "شفرة التجميع"
+en = "assembly code"
+banned = []
+status = "approved"
+
+[term.flag]
+ar = "علم"
+en = "flag"
+banned = ["راية"]
+status = "approved"
+
+[term.user_interface]
+ar = "واجهة المستخدم"
+en = "user interface"
+banned = []
+status = "approved"
+
+[term.encoding]
+ar = "الترميز"
+en = "encoding"
+banned = []
+note = "و«ترميز الأسماء» mangling مصطلح مركب مستقل"
+status = "approved"
+
+[term.borrow_checker]
+ar = "مدقق الاستعارة"
+en = "borrow checker"
+banned = []
+status = "approved"
