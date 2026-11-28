@@ -442,6 +442,53 @@ en = "statement"
 banned = []
 status = "approved"
 
+[term.operator]
+ar = "عامل"
+en = "operator"
+banned = []
+note = "رمز العملية في التعبير، مثل + و*"
+status = "proposed"
+
+[term.operand]
+ar = "طرف"
+en = "operand"
+banned = []
+note = "ما يعمل عليه العامل. لا يسمى «معاملًا»، فالمعامل للدالة وحدها"
+status = "proposed"
+
+[term.compound_assignment]
+ar = "إسناد مركب"
+en = "compound assignment"
+banned = []
+note = "مثل += و-=، وهو تعليمة لا تعبير"
+status = "proposed"
+
+[term.precedence]
+ar = "أولوية العوامل"
+en = "operator precedence"
+banned = []
+status = "proposed"
+
+[term.literal]
+ar = "حرفية"
+en = "literal"
+banned = []
+note = "قيمة مكتوبة في الشفرة نفسها، مثل ٣ و\"نص\" و٢٫٥"
+status = "proposed"
+
+[term.constant_expression]
+ar = "تعبير ثابت"
+en = "constant expression"
+banned = []
+note = "تعبير يحسبه المترجم من حرفيات وثوابت وحدها"
+status = "proposed"
+
+[term.overflow]
+ar = "فيضان"
+en = "overflow"
+banned = []
+status = "proposed"
+
 [term.module]
 ar = "وحدة"
 en = "module"
